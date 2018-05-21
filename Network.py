@@ -40,12 +40,12 @@ energysystem.add(bcoal, bgas, bel)
 
 # create simple sink object for electrical demand for each electrical bus
 solph.Sink(label='demand_elec', inputs={bel: solph.Flow(
-        actual_value= data['demand_el'], fixed=True, nominal_value=1)})
+       actual_value= data['demand_el'], fixed=True, nominal_value=1)})
 
 
 # Create all Transformers
 
-# create simple transformer object representing a gas power plant
+#create simple transformer object representing a gas power plant
 energysystem.add(solph.Transformer(
     label="pp_gas",
     inputs={bgas: solph.Flow()},
@@ -53,7 +53,9 @@ energysystem.add(solph.Transformer(
     conversion_factors={bel: 0.58}))
 
 energysystem.add(solph.Transformer(
-        label="pp_coal", 
-        inputs={bcoal: solph.Flow()}, 
-        outputs = {bel: solph.Flow(nominal_value=10e10, variable_costs=50)},
-        conversion_factor ={bel:0.4}))
+       label="pp_coal", 
+       inputs={bcoal: solph.Flow()}, 
+       outputs = {bel: solph.Flow(nominal_value=10e10, variable_costs=50)},
+       conversion_factor ={bel:0.4}))
+
+
