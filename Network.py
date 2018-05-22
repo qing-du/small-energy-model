@@ -46,15 +46,16 @@ energysystem.add(bcoal, bgas, bel)
 
 # create source object representing the natural gas commodity (annual limit)
 energysystem.add(solph.Source(label='rgas', outputs={bgas: solph.Flow(
-    nominal_value=1000000, varible_costs = 400)}))
+    nominal_value=10000000, variable_costs = 40)}))
 
 # create source object representing the natural coal commodity (annual limit)
 energysystem.add(solph.Source(label='rcoal', outputs={bcoal: solph.Flow(
-    nominal_value=8000000, variable_costs = 40)}))
+    nominal_value=100000, variable_costs = 10)}))
 
 # source wind
 energysystem.add(solph.Source(label='wind', outputs={bel: solph.Flow(fixed=True, 
         actual_value=data['wind'], nominal_value=100000)}))
+
 # create simple sink object for electrical demand for each electrical bus
 solph.Sink(label='demand_elec', inputs={bel: solph.Flow(
        actual_value= data['demand_el'], fixed=True, nominal_value=1)})
@@ -78,6 +79,6 @@ energysystem.add(solph.Transformer(
        label="pp_coal", 
        inputs={bcoal: solph.Flow()}, 
        outputs = {bel: solph.Flow(nominal_value = None, variable_costs=6,investment=solph.Investment(ep_costs=epc_coal))},
-       conversion_factor ={bel:0.4}))
+       conversion_factors ={bel:0.5}))
 
 
