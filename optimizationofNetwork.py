@@ -17,16 +17,6 @@ import matplotlib.pyplot as plt
 
 import networkx as nx
 
-
-
-
-
-
-
-
-
-
-
 om = solph.Model(nt.energysystem)
 
 om.solve(solver = 'cbc', solve_kwargs ={'tee':True})
@@ -49,12 +39,11 @@ nt.energysystem.results['meta'] = processing.meta_results(om)
 nt.energysystem.dump(dpath=None, filename=None)
 # define an alias for shorter calls below (optional)
 results = nt.energysystem.results['main']
-#storage = nt.energysystem.groups['storage']
+
 # print a time slice of the state of charge
 print('')
 print('********* State of Charge (slice) *********')
-#print(results[(storage, None)]['sequences']['2012-02-25 08:00:00':
- #                                           '2012-02-26 15:00:00'])
+
 print('')
 
 # get all variables of a specific component/bus
@@ -63,7 +52,7 @@ electricity_bus = views.node(results, 'electricity')
 
 # plot the time series (sequences) of a specific component/bus
 if plt is not None:
- #   custom_storage['sequences'].plot(kind='line', drawstyle='steps-post')
+
     plt.show()
     electricity_bus['sequences'].plot(kind='line', drawstyle='steps-post')
     plt.show()
